@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Renamer.Properties;
+using Renamer.Services;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -34,6 +36,11 @@ namespace Renamer.Models
             }));
 
             _gameMappingLookup = this.ToDictionary(g => g.SourceName);
+
+            if (!this.Any())
+            {
+                ServiceFactory.Get<IDialogService>().ShowErrorMessageDialog(Resources.Error, Resources.HyperSpinXmlError);
+            }
         }
 
         /// <summary>

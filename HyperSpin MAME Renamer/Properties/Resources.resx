@@ -288,4 +288,10 @@
   <data name="Success" xml:space="preserve">
     <value>Success</value>
   </data>
+  <data name="HyperSpinXmlError" xml:space="preserve">
+    <value>Could not read the HyperSpin XML file. Are you sure it is valid?</value>
+  </data>
+  <data name="MameXmlError" xml:space="preserve">
+    <value>Could not read the MAME XML file. Are you sure it is valid?</value>
+  </data>
 </root>

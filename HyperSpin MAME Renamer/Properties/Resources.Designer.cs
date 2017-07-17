@@ -259,11 +259,29 @@ namespace Renamer.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not read the HyperSpin XML file. Are you sure it is valid?.
+        /// </summary>
+        public static string HyperSpinXmlError {
+            get {
+                return ResourceManager.GetString("HyperSpinXmlError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HyperSpin XML File.
         /// </summary>
         public static string HyperSpinXmlFile {
             get {
                 return ResourceManager.GetString("HyperSpinXmlFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Could not read the MAME XML file. Are you sure it is valid?.
+        /// </summary>
+        public static string MameXmlError {
+            get {
+                return ResourceManager.GetString("MameXmlError", resourceCulture);
             }
         }
         

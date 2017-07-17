@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using Renamer.Properties;
+using Renamer.Services;
+using System.Linq;
 using System.Xml.Linq;
 
 namespace Renamer.Models
@@ -25,6 +27,11 @@ namespace Renamer.Models
                 RomName = s.Descendants("rom").First().Attribute("name").Value,
                 Crc = s.Descendants("rom").First().Attribute("crc").Value,
             }));
+
+            if (!this.Any())
+            {
+                ServiceFactory.Get<IDialogService>().ShowErrorMessageDialog(Resources.Error, Resources.MameXmlError);
+            }
         }
 
         #endregion Public Constructors
