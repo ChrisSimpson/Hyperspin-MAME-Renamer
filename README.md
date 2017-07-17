@@ -1,2 +1,0 @@
-# hyperspin-mame-renamer
-

@@ -1,0 +1,16 @@
+﻿<Dictionary>
+  <Words>
+    <Recognized>
+      <Word>Crc</Word>
+      <Word>Mame</Word>
+      <Word>Renamer</Word>
+      <Word>Roms</Word>
+      <Word>Softlist</Word>
+    </Recognized>
+  </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>MAME</Acronym>
+    </CasingExceptions>
+  </Acronyms>
+</Dictionary>
