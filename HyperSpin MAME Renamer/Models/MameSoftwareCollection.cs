@@ -27,14 +27,13 @@ namespace Renamer.Models
             {
                 var romItem = 1;
                 var romElements = softwareElement.Descendants("rom");
-                var romElementsCount = romElements.Count();
 
                 foreach (var romElement in romElements)
                 {
                     Add(new MameSoftware()
                     {
                         Name = softwareElement.Attribute("name").Value,
-                        Description = softwareElement.Element("description").Value + (romElementsCount > 1 ? " (" + romItem.ToString(CultureInfo.InvariantCulture) + "/" + romElementsCount.ToString(CultureInfo.InvariantCulture) + ")" : String.Empty),
+                        Description = softwareElement.Element("description").Value + (romElements.Count() > 1 ? " #" + romItem.ToString(CultureInfo.InvariantCulture) : String.Empty),
                         RomName = romElement.Attribute("name").Value,
                         Crc = romElement.Attribute("crc").Value
                     });
