@@ -1,5 +1,7 @@
 ﻿using Renamer.Properties;
 using Renamer.Services;
+using System;
+using System.Globalization;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -20,13 +22,25 @@ namespace Renamer.Models
         {
             var mameXmlDocument = XDocument.Load(fileName);
 
-            AddRange(mameXmlDocument.Root.Elements("software").Select(s => new MameSoftware()
+            var softwareElements = mameXmlDocument.Root.Elements("software");
+            foreach (var softwareElement in softwareElements)
             {
-                Name = s.Attribute("name").Value,
-                Description = s.Element("description").Value,
-                RomName = s.Descendants("rom").First().Attribute("name").Value,
-                Crc = s.Descendants("rom").First().Attribute("crc").Value,
-            }));
+                var romItem = 1;
+                var romElements = softwareElement.Descendants("rom");
+                var romElementsCount = romElements.Count();
+
+                foreach (var romElement in romElements)
+                {
+                    Add(new MameSoftware()
+                    {
+                        Name = softwareElement.Attribute("name").Value,
+                        Description = softwareElement.Element("description").Value + (romElementsCount > 1 ? " (" + romItem.ToString(CultureInfo.InvariantCulture) + "/" + romElementsCount.ToString(CultureInfo.InvariantCulture) + ")" : String.Empty),
+                        RomName = romElement.Attribute("name").Value,
+                        Crc = romElement.Attribute("crc").Value
+                    });
+                    romItem++;
+                }
+            }
 
             if (!this.Any())
             {

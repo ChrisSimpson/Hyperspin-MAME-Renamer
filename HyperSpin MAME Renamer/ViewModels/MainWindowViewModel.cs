@@ -496,7 +496,8 @@ namespace Renamer.ViewModels
                             var targetRomFileName = Path.Combine(romOutputFolder, gameMapping.SelectedMapping.RomName);
                             File.Copy(sourceRomFileName, targetRomFileName);
 
-                            using (var zipFile = new ZipFile(Path.Combine(romOutputFolder, gameMapping.SelectedMapping.Name + ".zip")))
+                            var zipFileName = Path.Combine(romOutputFolder, gameMapping.SelectedMapping.Name + ".zip");
+                            using (var zipFile = File.Exists(zipFileName) ? ZipFile.Read(zipFileName) : new ZipFile(zipFileName))
                             {
                                 zipFile.AddFile(targetRomFileName, String.Empty);
                                 zipFile.Save();
@@ -517,7 +518,7 @@ namespace Renamer.ViewModels
                                 else
                                 {
                                     var targetArtworkFileName = Path.Combine(artworkOutputFolder, artworkFolderName, gameMapping.SelectedMapping.Name + Path.GetExtension(sourceArtworkFileName));
-                                    File.Copy(sourceArtworkFileName, targetArtworkFileName);
+                                    File.Copy(sourceArtworkFileName, targetArtworkFileName, true);
                                 }
                             }
 
